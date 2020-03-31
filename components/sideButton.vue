@@ -2,7 +2,6 @@
     <div>
         <a
             href='#'
-            class='arrowBtn'
             @click='$emit("navigation", nextValue)'
         >
             <div
