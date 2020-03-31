@@ -7,7 +7,6 @@ A simple component used to rotate through a number of slides, using a background
 `slides` shoud be an array of objects which require the following fields:
 
 * text: The text you would like displayed on the slide.
-* iconName: The name of the `q-icon` you would like to display on the slide.
 * style: The styles you would like applied to the slide.
 
 This array should be passed to the carousel as a prop.
