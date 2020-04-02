@@ -50,10 +50,9 @@ export default {
     .arrowNav {
         position: relative;
         font-size: 100px;
-        height: 100vh;
+        height: 100%;
         display: flex;
         flex-grow: 1;
-        width: 7vw;
         align-items: center;
         justify-content: center;
         color: white;
