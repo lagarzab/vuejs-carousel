@@ -11,26 +11,28 @@
 
         <!-- main content -->
         <div class='flexColumn flexContentContainer'>
-            <!-- main content container -->
-            <slot
-                name='default'
-                :selectedIndex='slideIndex'
-            >
-                <div>
-                    <q-icon
-                        :name='dataSlides[0].iconName'
-                        style='font-size:100px;'
-                    ></q-icon>
-                    {{ dataSlides[0].text }}
-                </div>
-            </slot>
+            <div class='flexContent'>
+                <!-- main content container -->
+                <slot
+                    name='default'
+                    :selectedIndex='slideIndex'
+                >
+                    <div>
+                        <q-icon
+                            :name='dataSlides[0].iconName'
+                            style='font-size:100px;'
+                        ></q-icon>
+                        {{ dataSlides[0].text }}
+                    </div>
+                </slot>
+            </div>
 
             <!-- bottom nav -->
             <bottom-navigation
                 :slideCount='slideCount'
                 :selectedSlide='slideIndex'
                 :errorMessage='errorMessage'
-                @navToSlide='val => slideIndex = val'
+                @navToSlide='val => direct(val)'
             ></bottom-navigation>
         </div>
 
@@ -82,12 +84,18 @@ export default {
         }
     },
     methods: {
+        direct (slide) {
+            this.$emit('switch', this.slideIndex - slide >= 0 ? -1 : 1 )
+            this.slideIndex = slide
+        },
         rotate (dir) {
             if (dir > 0) {
                 this.slideIndex = this.slideIndex < this.dataSlides.length - 1 ? this.slideIndex + 1 : 0
+                this.$emit('switch', 1)
             }
             else {
                 this.slideIndex = this.slideIndex == 0 ? this.dataSlides.length - 1 : this.slideIndex - 1
+                this.$emit('switch', -1)
             }
         },
     },
@@ -111,25 +119,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .flexRow {
-        display: flex;
-        flex-direction: row;
-    }
-    .flexColumn {
-        display: flex;
-        flex-direction: column;
-    }
-    .flexContentContainer {
-        flex-grow: 1;
-        width: 86vw;
-        align-content: center;
-        align-items: center;
-    }
-    .flexContentContainer div:first-of-type {
-        @extend .flexColumn;
-        flex-grow: 1;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-    }
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+.flexContentContainer {
+    flex-grow: 1;
+    width: 86vw;
+    align-content: center;
+    align-items: center;
+}
+.flexContent {
+    @extend .flexRow;
+    flex-grow: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.flexContent div:first-of-type {
+    @extend .flexColumn;
+    flex-grow: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
 </style>

@@ -1,7 +1,6 @@
 <template>
     <div>
-        <a
-            href='#'
+        <button class='btn'
             @click='$emit("navigation", nextValue)'
         >
             <div
@@ -12,7 +11,7 @@
                     <q-icon :name='iconName'></q-icon>
                 </div>
             </div>
-        </a>
+        </button>
     </div>
 </template>
 
@@ -59,6 +58,13 @@ export default {
     }
     .arrowNav:hover {
         background-color: rgba(black, 0.25);
+    }
+    .btn {
+        height: 100%;
+        width: 100%;
+        border: none;
+        padding: 0;
+        background-color: transparent;
     }
 
 </style>
