@@ -11,19 +11,21 @@
 
         <!-- main content -->
         <div class='flexColumn flexContentContainer'>
-            <!-- main content container -->
-            <slot
-                name='default'
-                :selectedIndex='slideIndex'
-            >
-                <div>
-                    <q-icon
-                        :name='dataSlides[0].iconName'
-                        style='font-size:100px;'
-                    ></q-icon>
-                    {{ dataSlides[0].text }}
-                </div>
-            </slot>
+            <div class='flexContent'>
+                <!-- main content container -->
+                <slot
+                    name='default'
+                    :selectedIndex='slideIndex'
+                >
+                    <div>
+                        <q-icon
+                            :name='dataSlides[0].iconName'
+                            style='font-size:100px;'
+                        ></q-icon>
+                        {{ dataSlides[0].text }}
+                    </div>
+                </slot>
+            </div>
 
             <!-- bottom nav -->
             <bottom-navigation
@@ -111,25 +113,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .flexRow {
-        display: flex;
-        flex-direction: row;
-    }
-    .flexColumn {
-        display: flex;
-        flex-direction: column;
-    }
-    .flexContentContainer {
-        flex-grow: 1;
-        width: 86vw;
-        align-content: center;
-        align-items: center;
-    }
-    .flexContentContainer div:first-of-type {
-        @extend .flexColumn;
-        flex-grow: 1;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-    }
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+.flexContentContainer {
+    flex-grow: 1;
+    width: 86vw;
+    align-content: center;
+    align-items: center;
+}
+.flexContent {
+    @extend .flexRow;
+    flex-grow: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.flexContent div:first-of-type {
+    @extend .flexColumn;
+    flex-grow: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
 </style>
