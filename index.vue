@@ -32,7 +32,7 @@
                 :slideCount='slideCount'
                 :selectedSlide='slideIndex'
                 :errorMessage='errorMessage'
-                @navToSlide='val => slideIndex = val'
+                @navToSlide='val => direct(val)'
             ></bottom-navigation>
         </div>
 
@@ -84,12 +84,18 @@ export default {
         }
     },
     methods: {
+        direct (slide) {
+            this.$emit('switch', this.slideIndex - slide >= 0 ? -1 : 1 )
+            this.slideIndex = slide
+        },
         rotate (dir) {
             if (dir > 0) {
                 this.slideIndex = this.slideIndex < this.dataSlides.length - 1 ? this.slideIndex + 1 : 0
+                this.$emit('switch', 1)
             }
             else {
                 this.slideIndex = this.slideIndex == 0 ? this.dataSlides.length - 1 : this.slideIndex - 1
+                this.$emit('switch', -1)
             }
         },
     },
