@@ -41,6 +41,6 @@
         background-color: transparent;
         color: white;
         text-decoration: none;
-        margin: 8px;
+        margin: 3px;
     }
 </style>
